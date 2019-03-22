@@ -3,12 +3,7 @@ function matchesPerYear(){
     var matches = require('../JSON-files/matches.json');
     
     // empty object which stores the result
-    let matchesPerYearObj = {};
-    
-    /*matches.map(obj => {
-       // matchesPerYearObj.hasOwnProperty(obj["season"]) ? matchesPerYearObj[obj["season"]]++ : matchesPerYearObj[obj["season"]]=1;
-       matchesPerYearObj.hasOwnProperty(obj["season"]) ? matchesPerYearObj[obj["season"]] = 1 : matchesPerYearObj[obj["season"]]++;
-    })*/
+    var matchesPerYearObj = {};
 
     for(var i=0; i<matches.length; i++){
         if(matchesPerYearObj.hasOwnProperty(matches[i].season)){
@@ -27,6 +22,11 @@ function matchesPerYear(){
 
     const fs = require('fs');
     var jsonData = JSON.stringify(matchesPerYearArr);
+    fs.writeFile('../queried-JSON-files/JSON-Highcharts/matchesPerYear.json', jsonData, (err) => {
+        if(err) throw err;
+    });
+
+    jsonData = JSON.stringify(matchesPerYearObj);
     fs.writeFile('../queried-JSON-files/matchesPerYear.json', jsonData, (err) => {
         if(err) throw err;
     });
