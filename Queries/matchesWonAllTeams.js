@@ -22,6 +22,16 @@ function matchesWonAllTeams(){
         if(err) throw err;
     });
 
+    var matchesWonAllTeamsArr = [];
+    for(let ele in matchesWonAllTeamsObj){
+        matchesWonAllTeamsArr.push({'team':ele, 'matches-won':matchesWonAllTeamsObj[ele]});
+    }
+    jsonData = JSON.stringify(matchesWonAllTeamsArr);
+    fs.writeFile('../queried-JSON-files/JSON-Highcharts/matchesWonAllTeams.json', jsonData, (err) => {
+        if(err) throw err;
+    });
+
+
 }
 
 matchesWonAllTeams();
