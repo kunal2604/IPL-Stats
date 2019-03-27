@@ -5,17 +5,16 @@ function matchesWonAllTeams(){
     var deliveries = require('../JSON-files/deliveries.json');
 
     // Store matches in the year 2016 in a seperate object:
-    var year = 2016;
-    var matchesInYear = [];
+    var matchesIn2016 = [];
     for(var i=0; i<matches.length; i++){
-        if(matches[i]["season"] === year){
-            matchesInYear.push(matches[i]);
+        if(matches[i]["season"] === 2016){
+            matchesIn2016.push(matches[i]);
         }
     }
 
     var extraRunsConceded = {};
-    for(var i=0; i<matchesInYear.length; i++){
-        var id = matchesInYear[i]["id"];
+    for(var i=0; i<matchesIn2016.length; i++){
+        var id = matchesIn2016[i]["id"];
         
         for(var j=0; j<deliveries.length; j++){
             
@@ -30,21 +29,17 @@ function matchesWonAllTeams(){
         }
     }
 
-    console.log(extraRunsConceded);
-    
-    const fs = require('fs');
-    var jsonData = JSON.stringify(extraRunsConceded);
-    fs.writeFile('../queried-JSON-files/extraRunsConceded.json', jsonData, (err) => {
-        if(err) throw err;
-    });
+    //console.log(extraRunsConceded);
 
     var extraRunsConcededArr = [];
     for(let ele in extraRunsConceded){
-        extraRunsConcededArr.push({'team':ele, 'extraRuns':extraRunsConceded[ele]});
+        extraRunsConcededArr.push({'name':ele, 'y':extraRunsConceded[ele]});
     }
+    //console.log(extraRunsConcededArr);
 
+    const fs = require('fs');
     jsonData = JSON.stringify(extraRunsConcededArr);
-    fs.writeFile('../queried-JSON-files/JSON-Highcharts/extraRunsConceded.json', jsonData, (err) => {
+    fs.writeFile('../queried-JSON-files/extraRunsConceded.json', jsonData, (err) => {
         if(err) throw err;
     });
 

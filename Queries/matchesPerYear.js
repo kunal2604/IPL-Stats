@@ -13,24 +13,23 @@ function matchesPerYear(){
             matchesPerYearObj[matches[i]["season"]] = 1;
         }
     }
-    //for (var ele in matchesPerYearObj) console.log(ele);
+    console.log(matchesPerYearObj);
+
+
 
     var matchesPerYearArr = [];
     for(let ele in matchesPerYearObj){
-        matchesPerYearArr.push({'name':ele, 'year':matchesPerYearObj[ele]});
+        matchesPerYearArr.push({'name':ele, 'y':matchesPerYearObj[ele]});
     }
+    console.log(matchesPerYearArr);
 
-    const fs = require('fs');
+    const fs = require('fs');    
     var jsonData = JSON.stringify(matchesPerYearArr);
-    fs.writeFile('../queried-JSON-files/JSON-Highcharts/matchesPerYear.json', jsonData, (err) => {
-        if(err) throw err;
-    });
-
-    jsonData = JSON.stringify(matchesPerYearObj);
     fs.writeFile('../queried-JSON-files/matchesPerYear.json', jsonData, (err) => {
         if(err) throw err;
     });
 
+    
 }
 
 matchesPerYear();
