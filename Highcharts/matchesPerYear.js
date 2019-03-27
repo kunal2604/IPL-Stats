@@ -2,11 +2,8 @@
 fetch('queried-JSON-files/matchesPerYear.json').then((response) => response.json()).then(data => {
     
     var jsondata = data;
-    //console.log(jsondata);
     PlotChart(jsondata);
 })
-
-
 
 // Create the chart
 function PlotChart(jsonObj){
@@ -43,7 +40,7 @@ function PlotChart(jsonObj){
 
         tooltip: {
             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.0f}</b>'
         },
 
         "series": [{
