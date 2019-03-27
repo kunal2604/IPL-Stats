@@ -32,12 +32,12 @@ function topEconomicBowlers(){
                 recordBowlersObj[del["bowler"]]["balls"] = 1;    
             }
         }
-    });https://www.iplt20.com/stats/all-time/most-runs-conceded-innings
+    });
 
-    for(var bow in recordBowlersObj){
+    for(var bowler in recordBowlersObj){
         var arr = [];
-        let economyRate = (recordBowlersObj[bow]["runs"] * 6) / (recordBowlersObj[bow]["balls"]);
-        arr.push(bow);
+        let economyRate = (recordBowlersObj[bowler]["runs"] * 6) / (recordBowlersObj[bowler]["balls"]);
+        arr.push(bowler);
         arr.push(economyRate);
         economyBowlersArr.push(arr);
     }
@@ -47,8 +47,8 @@ function topEconomicBowlers(){
 
     topTenBowlersArr = economyBowlersArr.slice(0, 11);
 
-    topTenBowlersArr.map(item => {
-        economicBowlers[item[0]] = item[1];
+    topTenBowlersArr.map(bowler => {
+        economicBowlers[bowler[0]] = bowler[1];
     })
 
     for(var obj in economicBowlers){

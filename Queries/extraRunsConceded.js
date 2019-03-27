@@ -13,25 +13,37 @@ function matchesWonAllTeams(){
     });
 
     // Store extra runs conceded by each team in an object of form {"team-name": extras}.
-    var extraRunsConceded = {};
+    var extraRunsConcededObj = {};
     matches2016ID.map(id => {
         deliveries.map(del => {
             if(del["match_id"] == id){
-                if(extraRunsConceded.hasOwnProperty(del["bowling_team"])){
-                    extraRunsConceded[del["bowling_team"]] += parseInt(del["extra_runs"]);
+                if(extraRunsConcededObj.hasOwnProperty(del["bowling_team"])){
+                    extraRunsConcededObj[del["bowling_team"]] += parseInt(del["extra_runs"]);
                 }
                 else{
-                    extraRunsConceded[del["bowling_team"]] = parseInt(del["extra_runs"]);
+                    extraRunsConcededObj[del["bowling_team"]] = parseInt(del["extra_runs"]);
                 }
             }
         });
     });
 
+    var sortedExtraRunsConceded = [];
+    for(let team in extraRunsConcededObj){
+        let tempArr = [];
+        tempArr.push(team);
+        tempArr.push(extraRunsConcededObj[team]);
+        sortedExtraRunsConceded.push(tempArr);
+    }
+
+    // Sort the 2D Array according to number of extras.
+    sortedExtraRunsConceded.sort((a,b) => b[1] - a[1]);
+    
     // For Highcharts, store the data as an 'Array of Objects', in the form [{name: 'team-name' , y: extras}, {}, {}, ...]
     var extraRunsConcededArr = [];
-    for(let ele in extraRunsConceded){
-        extraRunsConcededArr.push({'name':ele, 'y':extraRunsConceded[ele]});
-    }
+
+    sortedExtraRunsConceded.map(item => {
+        extraRunsConcededArr.push({'name': item[0], 'y': item[1]});
+    });
 
     // Convert the array of objects into a JSON file.
     const fs = require('fs');
