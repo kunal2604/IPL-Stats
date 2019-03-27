@@ -6,7 +6,7 @@ function topEconomicBowlers(){
     var matches2015 = [];      
     var recordBowlersObj = {};
 
-    var topTenBowlers = economyBowlersArr.slice(0, 11);
+    var topTenBowlersArr = [];
     var topTenBowlersJSON = [];
     var economicBowlers = {};
     var economyBowlersArr = [];
@@ -32,7 +32,7 @@ function topEconomicBowlers(){
                 recordBowlersObj[del["bowler"]]["balls"] = 1;    
             }
         }
-    });
+    });https://www.iplt20.com/stats/all-time/most-runs-conceded-innings
 
     for(var bow in recordBowlersObj){
         var arr = [];
@@ -42,11 +42,12 @@ function topEconomicBowlers(){
         economyBowlersArr.push(arr);
     }
 
+    // Sort the array based on 'economy rate'.
     economyBowlersArr.sort((a,b) => a[1]-b[1] );
 
-    
+    topTenBowlersArr = economyBowlersArr.slice(0, 11);
 
-    topTenBowlers.map(item => {
+    topTenBowlersArr.map(item => {
         economicBowlers[item[0]] = item[1];
     })
 
@@ -54,6 +55,7 @@ function topEconomicBowlers(){
         topTenBowlersJSON.push({'name': obj, 'y':economicBowlers[obj] });
     }
 
+    // Convert the array of objects into a JSON file.
     const fs = require('fs');
     jsonData = JSON.stringify(topTenBowlersJSON);
     fs.writeFile('../queried-JSON-files/topEconomicBowlers.json', jsonData, (err) => {
