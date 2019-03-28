@@ -1,4 +1,3 @@
-
 fetch('queried-JSON-files/matchesPerYear.json').then((response) => response.json()).then(data => {
     var jsondata = data;
     PlotChart(jsondata);
@@ -47,6 +46,5 @@ function PlotChart(jsonObj){
             "colorByPoint": true,
             "data": jsonObj
         }]
-        
     });
 }

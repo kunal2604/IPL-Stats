@@ -1,4 +1,3 @@
-
 fetch('queried-JSON-files/extraRunsConceded.json').then((response) => response.json()).then(data => {
     var jsondata = data;
     PlotChart3(jsondata);
@@ -48,7 +47,6 @@ Highcharts.chart('container3', {
         "name": "Extras",
         "colorByPoint": true,
         "data": jsonObj
-    }]
-    
+    }] 
 });
 }

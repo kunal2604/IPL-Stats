@@ -27,6 +27,7 @@ function matchesWonAllTeams(yy){
         });
     });
 
+    // Store the data as 'Array of Arrays', --> [ ['Mumbai Indians',108],['Delhi D',106], [], ... ]
     var sortedExtraRunsConceded = [];
     for(let team in extraRunsConcededObj){
         let tempArr = [];
