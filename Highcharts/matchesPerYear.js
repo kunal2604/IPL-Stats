@@ -5,7 +5,6 @@ fetch('queried-JSON-files/matchesPerYear.json').then((response) => response.json
 
 // Create the chart
 function PlotChart(jsonObj){
-
     Highcharts.chart('container', {
         chart: {
             type: 'column'
