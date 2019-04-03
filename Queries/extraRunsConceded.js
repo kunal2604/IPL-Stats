@@ -4,22 +4,12 @@ function extraRunsConceded(yy){
     var matches = require('../JSON-files/matches.json');
     var deliveries = require('../JSON-files/deliveries.json');
 
-    // Store 'Match IDs' of matches played in the year 'yy' (2016).
-    var matchesInYearID = [];
-    
-    /*matches.map(match => {
-        if(match["season"] === yy){
-            matchesInYearID.push(match["id"]);
-        }
-    });*/
-
     var matchesObj = {};
-   matches.map(match => {
+    matches.map(match => {
         if(match["season"] === yy){
             matchesObj[match["id"]] = match["id"];
         }
     });
-
 
     // Store extra runs conceded by each team in an object of form {"team-name": extras}.
     var extraRunsConcededObj = {};
@@ -64,8 +54,6 @@ function extraRunsConceded(yy){
     fs.writeFile('../queried-JSON-files/extraRunsConceded.json', jsonData, (err) => {
         if(err) throw err;
     });
-
-    
 }
 
 extraRunsConceded(2016);
