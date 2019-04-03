@@ -37,6 +37,8 @@ function extraRunsConceded(yy){
   
    console.log(extraRunsConcededObj);
 
+    console.log(extraRunsConcededObj);
+
     // Store the data as 'Array of Arrays', --> [ ['Mumbai Indians',108],['Delhi D',106], [], ... ]
    
    
